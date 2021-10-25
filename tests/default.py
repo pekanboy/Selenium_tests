@@ -6,7 +6,7 @@ from steps.AuthStep import AuthStep
 
 
 class DefaultTest(unittest.TestCase):
-    EMAIL = 'test@mail.ru'  # os.environ['EMAIL']
+    EMAIL = 'test@mail.com'  # os.environ['EMAIL']
     PASSWORD = '123456Qq'  # os.environ['PASSWORD']
     LOGIN = 'Hello'  # os.environ['LOGIN']
 

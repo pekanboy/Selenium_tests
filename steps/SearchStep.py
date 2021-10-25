@@ -35,7 +35,44 @@ class SearchStep(DefaultStep):
             filters['desc']['down']
         )
 
-        self.page.fillSearch('')
-        self.page.find()
+        self.page.submit()
 
         return self.page.getSearchResult()
+
+    def checkClickToResultCardOrder(self):
+        toOrder = [
+            self.page.TITLE,
+            self.page.MORE_DESCR
+        ]
+        toUser = [
+            self.page.AVATAR,
+        ]
+
+        for item in toOrder:
+            self.movesBeforeClick(item, 'onlyOrders')
+            self.checkMoveToOrder()
+
+        for item in toUser:
+            self.movesBeforeClick(item, 'onlyOrders')
+            self.checkMoveToUser()
+
+    def checkClickToResultCardUser(self):
+        self.movesBeforeClick(self.page.MORE_BTN_CATEGORY, 'onlyUsers')
+        self.checkMoveToUser()
+
+    def movesBeforeClick(self, xpath, only):
+        filters = self.page.FILTERS
+        self.page.open()
+        self.page.fillClickableFilter(
+            filters['searchFor'],
+            filters['searchFor'][only]
+        )
+        self.page.submit()
+        self.page.waitOfVisible(xpath)
+        self.page.clickOnElement(xpath)
+
+    def checkMoveToOrder(self):
+        self.page.waitOfVisible(self.page.ORDER_PAGE)
+
+    def checkMoveToUser(self):
+        self.page.waitOfVisible(self.page.PROFILE_PAGE)
