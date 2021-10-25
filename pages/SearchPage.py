@@ -34,17 +34,24 @@ class SearchPage(DefaultPage):
     SUGGEST = '//div[contains(@class, "suggest")]'
     RESULTS = '//div[@class="orders__order"]'
 
+    RESULT_CARD = {
+        'avatar': '//img[@class="orders__order_img"]',
+        'title': '//a[@class="orders__order_title"]',
+        'more_category': '//button[contains(text(),"ещё...")]',
+        'more_description': '//a[contains(text(),"...показать еще")]'
+    }
+
     def fillSearch(self, value):
-        self.driver.find_element_by_xpath(self.SEARCH).click()
-        self.driver.find_element_by_xpath(self.SEARCH).send_keys(value)
+        self.clickOnElement(self.SEARCH)
+        self.sendKeysOnElement(self.SEARCH, value)
 
     def selectFirstSuggest(self):
         WebDriverWait(self.driver, 30, 0.1).until(
             lambda d: expected_conditions.visibility_of(d.find_element_by_xpath(self.SUGGEST))
         )
 
-        suggest_text = self.driver.find_element_by_xpath(self.SUGGEST).text
-        self.driver.find_element_by_xpath(self.SUGGEST).click()
+        suggest_text = self.getTextFromElement(self.SUGGEST)
+        self.clickOnElement(self.SUGGEST)
 
         return suggest_text
 
@@ -52,15 +59,15 @@ class SearchPage(DefaultPage):
         return self.driver.find_element_by_xpath(self.SEARCH).get_property("value")
 
     def fillClickableFilter(self, parent, child):
-        self.driver.find_element_by_xpath(parent['this']).click()
-        self.driver.find_element_by_xpath(child).click()
+        self.clickOnElement(parent['this'])
+        self.clickOnElement(child)
 
     def fillFilter(self, xpath, value):
-        self.driver.find_element_by_xpath(xpath).click()
-        self.driver.find_element_by_xpath(xpath).send_keys(value)
+        self.clickOnElement(xpath)
+        self.sendKeysOnElement(xpath, value)
 
     def find(self):
-        self.driver.find_element_by_xpath(self.FIND).click()
+        self.clickOnElement(self.FIND)
 
     def getSearchResult(self):
         WebDriverWait(self.driver, 30, 0.1).until(

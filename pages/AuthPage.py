@@ -16,7 +16,7 @@ class AuthPage(DefaultPage):
         :param email:
         :return:
         """
-        self.driver.find_element_by_xpath(self.EMAIL_INPUT).send_keys(email)
+        self.sendKeysOnElement(self.EMAIL_INPUT, email)
 
     def fill_password(self, password):
         """
@@ -24,14 +24,14 @@ class AuthPage(DefaultPage):
         :param password:
         :return:
         """
-        self.driver.find_element_by_xpath(self.PASSWORD_INPUT).send_keys(password)
+        self.sendKeysOnElement(self.PASSWORD_INPUT, password)
 
     def submit(self):
         """
         Нажатие на кнопку "Войти"
         :return:
         """
-        self.driver.find_element_by_xpath(self.SUBMIT).click()
+        self.clickOnElement(self.SUBMIT)
 
     def wait_profile_container(self):
         """
@@ -47,5 +47,5 @@ class AuthPage(DefaultPage):
         Получение логина с страницы профиля
         :return: Boolean
         """
-        return self.driver.find_element_by_xpath(self.LOGIN_IN_PROFILE).text
+        return self.getTextFromElement(self.LOGIN_IN_PROFILE)
 
