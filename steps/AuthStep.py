@@ -1,5 +1,5 @@
 from steps.default import DefaultStep
-from pages.AuthPage import Auth as Page
+from pages.AuthPage import AuthPage as Page
 
 
 class AuthStep(DefaultStep):
@@ -17,6 +17,7 @@ class AuthStep(DefaultStep):
         self.page.fill_Email(email)
         self.page.fill_password(password)
         self.page.submit()
+        self.page.wait_profile_container()
 
     def check_auth(self):
         """
