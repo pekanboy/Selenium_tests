@@ -32,24 +32,22 @@ class SearchPage(DefaultPage):
     SEARCH = '//input[@name="search"]'
     FIND = '//button[contains(text(),"Найти")]'
     SUGGEST = '//div[contains(@class, "suggest")]'
-    RESULTS = '//div[@class="orders__order"]'
 
-    RESULT_CARD = {
-        'avatar': '//img[@class="orders__order_img"]',
-        'title': '//a[@class="orders__order_title"]',
-        'more_category': '//button[contains(text(),"ещё...")]',
-        'more_description': '//a[contains(text(),"...показать еще")]'
-    }
+    RESULTS = '//div[@class="orders__order"]'
+    AVATAR = '//img[@class="orders__order_img"]'
+    TITLE = '//a[@class="orders__order_title"]'
+    MORE_DESCR = '//a[contains(text(),"...показать еще")]'
+    MORE_BTN_CATEGORY = '//button[contains(text(),"ещё...")]'
+
+    ORDER_PAGE = '//div[@class="orderPage"]'
+    PROFILE_PAGE = '//div[@class="profile"]'
 
     def fillSearch(self, value):
         self.clickOnElement(self.SEARCH)
         self.sendKeysOnElement(self.SEARCH, value)
 
     def selectFirstSuggest(self):
-        WebDriverWait(self.driver, 30, 0.1).until(
-            lambda d: expected_conditions.visibility_of(d.find_element_by_xpath(self.SUGGEST))
-        )
-
+        self.waitOfVisible(self.SUGGEST)
         suggest_text = self.getTextFromElement(self.SUGGEST)
         self.clickOnElement(self.SUGGEST)
 
@@ -66,12 +64,9 @@ class SearchPage(DefaultPage):
         self.clickOnElement(xpath)
         self.sendKeysOnElement(xpath, value)
 
-    def find(self):
+    def submit(self):
         self.clickOnElement(self.FIND)
 
     def getSearchResult(self):
-        WebDriverWait(self.driver, 30, 0.1).until(
-            lambda d: expected_conditions.visibility_of(d.find_element_by_xpath(self.RESULTS))
-        )
-
+        self.waitOfVisible(self.RESULTS)
         return self.driver.find_elements_by_xpath(self.RESULTS)

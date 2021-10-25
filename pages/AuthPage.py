@@ -38,9 +38,7 @@ class AuthPage(DefaultPage):
         Ожидание отрисовки логина в профиле
         :return:
         """
-        return WebDriverWait(self.driver, 30, 0.1).until(
-            lambda d: expected_conditions.visibility_of(d.find_element_by_xpath(self.LOGIN_IN_PROFILE))
-        )
+        self.waitOfVisible(self.LOGIN_IN_PROFILE)
 
     def get_login_in_profile(self):
         """
