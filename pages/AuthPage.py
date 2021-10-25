@@ -3,7 +3,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions
 
 
-class Auth(DefaultPage):
+class AuthPage(DefaultPage):
     PATH = '/login'
     EMAIL_INPUT = '//input[@name="email"]'
     PASSWORD_INPUT = '//input[@name="password"]'
