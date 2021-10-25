@@ -8,6 +8,7 @@ from steps.AuthStep import AuthStep
 class AuthTest(unittest.TestCase):
     EMAIL = 'test@mail.ru'  # os.environ['EMAIL']
     PASSWORD = '123456Qq'  # os.environ['PASSWORD']
+    LOGIN = 'Hello'  # os.environ['LOGIN']
 
     def setUp(self) -> None:
         browser = os.environ.get('BROWSER', 'CHROME')
@@ -20,7 +21,16 @@ class AuthTest(unittest.TestCase):
     def tearDown(self):
         self.driver.quit()
 
-    def testAuth(self):
+    def test_auth_user(self):
+        """
+        Тестирование успешной авторизации пользователя по почте и паролю
+        :return:
+        """
         authStep = AuthStep(self.driver)
         authStep.auth(self.EMAIL, self.PASSWORD)
-        authStep.checkAuth()
+        login = authStep.check_auth()
+        self.assertEqual(login,
+                         self.LOGIN,
+                         f'Авторизоваться не удалось: логин на странице профия ${login} '
+                         f'не совпадает с ожидаемым ${self.LOGIN}'
+                         )

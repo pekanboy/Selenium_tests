@@ -13,5 +13,5 @@ class DefaultPage:
         self.driver.get(url)
         self.driver.maximize_window()
 
-    def getCookies(self):
+    def get_cookies(self):
         return self.driver.get_cookies()
