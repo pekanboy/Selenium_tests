@@ -2,7 +2,7 @@ from urllib.parse import urljoin
 
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
-from selenium.common.exceptions import NoSuchElementException
+from selenium.common.exceptions import NoSuchElementException        
 
 
 class DefaultPage:
