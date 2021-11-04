@@ -33,7 +33,7 @@ class DefaultPage:
         return self.driver.find_element_by_xpath(xpath).text
 
     def waitOfVisible(self, xpath):
-        WebDriverWait(self.driver, 30, 0.1).until(
+        WebDriverWait(self.driver, 5, 0.1).until(
             lambda d: expected_conditions.visibility_of(d.find_element_by_xpath(xpath))
         )
 

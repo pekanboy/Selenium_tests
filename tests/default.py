@@ -10,9 +10,9 @@ class DefaultTest(unittest.TestCase):
     PASSWORD_EXECUTOR = '123456Qq'  # os.environ['PASSWORD']
     LOGIN_EXECUTOR = 'test'
 
-    EMAIL_CLIENT = 'Bars@barsilla.ru'  # os.environ['EMAIL']
-    PASSWORD_CLIENT = '123456Qq'  # os.environ['PASSWORD']
-    LOGIN_CLIENT = 'Bars'  # os.environ['LOGIN']
+    EMAIL_CLIENT = 'kek228@mail.ru'  # os.environ['EMAIL_CLIENT']
+    PASSWORD_CLIENT = 'Vbrhjajy1878'  # os.environ['PASSWORD_CLIENT']
+    LOGIN_CLIENT = 'kek228'  # os.environ['LOGIN_CLIENT']
     
     REG_DATA = {
         'login': 'qwerty',
@@ -21,9 +21,6 @@ class DefaultTest(unittest.TestCase):
         'password': '123456Qq'
     }
 
-    EMAIL_CLIENT = 'kek228@mail.ru'  # os.environ['EMAIL_CLIENT']
-    PASSWORD_CLIENT = 'Vbrhjajy1878'  # os.environ['PASSWORD_CLIENT']
-    LOGIN_CLIENT = 'kek228'  # os.environ['LOGIN_CLIENT']
 
     def setUp(self) -> None:
         browser = os.environ.get('BROWSER', 'CHROME')
@@ -46,9 +43,4 @@ class DefaultTest(unittest.TestCase):
         authStep = AuthStep(self.driver)
         authStep.auth(self.EMAIL_CLIENT, self.PASSWORD_CLIENT)
         authStep.page.wait_profile_container()
-        return authStep
-
-    def auth_client(self):
-        authStep = AuthStep(self.driver)
-        authStep.auth(self.EMAIL_CLIENT, self.PASSWORD_CLIENT)
         return authStep

@@ -17,9 +17,9 @@ class SettingsStep(DefaultStep):
     def check_change_settings_profile(self):
         login = 'Bars'
         name = 'Олех'
-        password = '123456Qq'
-        password_new = '123456Qq'
-        password_repeat = '123456Qq'
+        password = 'Vbrhjajy1878'
+        password_new = 'Vbrhjajy1878'
+        password_repeat = 'Vbrhjajy1878'
         about = 'абрикос'
 
         self.page.open()

@@ -40,12 +40,13 @@ class OrderTest(DefaultTest):
                             True,
                             f'Окно подтверждения завершения заказа не появилось'
                         )
+
     def test_no_end_button(self):
         self.auth_client()
 
         step = OrderStep(self.driver)
         is_close = step.check_no_end_button()
-        self.assertEqual(   is_close,
+        self.assertEqual(is_close,
                             True,
                             f'Окно подтверджения завершения заказа не закрылось'
                         )

@@ -55,11 +55,8 @@ class OrderPage(DefaultPage):
         return is_window
 
     def check_no_end_button(self):
-        self.waitOfVisible(self.SELECT_BUTTON)
         self.clickOnElement(self.SELECT_BUTTON)
-        self.waitOfVisible(self.END_BUTTON)
         self.clickOnElement(self.END_BUTTON)
-        self.waitOfVisible(self.NO_END_BUTTON)
         self.clickOnElement(self.NO_END_BUTTON)
         self.waitOfVisible(self.ORDER_PAGE_TITLE)
         is_order = self.check_exists_by_xpath(self.ORDER_PAGE_TITLE)
