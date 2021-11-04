@@ -2,6 +2,7 @@ from urllib.parse import urljoin
 
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
+from selenium.common.exceptions import NoSuchElementException        
 
 
 class DefaultPage:
@@ -32,3 +33,12 @@ class DefaultPage:
         WebDriverWait(self.driver, 30, 0.1).until(
             lambda d: expected_conditions.visibility_of(d.find_element_by_xpath(xpath))
         )
+    def clear_field(self, xpath):
+        self.driver.find_element_by_xpath(xpath).clear()
+
+    def check_exists_by_xpath(self, xpath):
+        try:
+            self.driver.find_element_by_xpath(xpath)
+        except NoSuchElementException:
+            return False
+        return True

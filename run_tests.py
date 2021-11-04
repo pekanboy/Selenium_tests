@@ -3,13 +3,21 @@ import unittest
 
 from tests.AllOrdersStep import AllOrdersTest
 from tests.AuthTest import AuthTest
+from tests.ChangeOrderTest import ChangeOrderTest
+from tests.CreateVacancyTest import CreateVacancyTest
 from tests.SearchTest import SearchTest
+from tests.CreateOrderTest import CreateOrderTest
+from tests.OrderTest import OrderTest 
 
 if __name__ == '__main__':
     suite = unittest.TestSuite((
         unittest.makeSuite(AuthTest),
         unittest.makeSuite(SearchTest),
         unittest.makeSuite(AllOrdersTest),
+        unittest.makeSuite(CreateOrderTest),
+        unittest.makeSuite(OrderTest),
+        unittest.makeSuite(ChangeOrderTest)
+        unittest.makeSuite(CreateVacancyTest)
     ))
 
     result = unittest.TextTestRunner().run(suite)
