@@ -7,4 +7,3 @@ class DefaultStep:
         self.page.fill_Email(email)
         self.page.fill_password(password)
         self.page.submit()
-        self.page.wait_profile_container()

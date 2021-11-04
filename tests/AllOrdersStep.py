@@ -4,7 +4,7 @@ from tests.default import DefaultTest
 
 class AllOrdersTest(DefaultTest):
     def test_clickable_fields_in_result_card(self):
-        self.auth()
+        self.auth_executor()
 
         step = AllOrdersStep(self.driver)
         step.checkClickToResultCard()

@@ -13,3 +13,7 @@ class AuthStep(DefaultStep):
         """
         self.page.wait_profile_container()
         return self.page.get_login_in_profile()
+
+    def check_err_auth(self):
+        self.auth('err_email', 'password')
+        self.page.wait_error()

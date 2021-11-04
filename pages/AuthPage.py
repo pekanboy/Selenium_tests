@@ -1,6 +1,4 @@
 from pages.default import DefaultPage
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions
 
 
 class AuthPage(DefaultPage):
@@ -9,6 +7,7 @@ class AuthPage(DefaultPage):
     PASSWORD_INPUT = '//input[@name="password"]'
     SUBMIT = '//button[contains(text(),"Войти")]'
     LOGIN_IN_PROFILE = '//div[@class="nickname__text"]'
+    ERROR_MESSAGE = '//*[contains(text(),"Неверный логин или пароль")]'
 
     def fill_Email(self, email):
         """
@@ -46,4 +45,7 @@ class AuthPage(DefaultPage):
         :return: Boolean
         """
         return self.getTextFromElement(self.LOGIN_IN_PROFILE)
+
+    def wait_error(self):
+        return self.waitOfVisible(self.ERROR_MESSAGE)
 
