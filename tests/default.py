@@ -10,6 +10,17 @@ class DefaultTest(unittest.TestCase):
     PASSWORD = '123456Qq'  # os.environ['PASSWORD']
     LOGIN = 'Hello'  # os.environ['LOGIN']
 
+    EMAIL_EXECUTOR = 'test_ex@mail.ru'
+    PASSWORD_EXECUTOR = '123456Qq'  # os.environ['PASSWORD']
+    LOGIN_EXECUTOR = 'test'
+
+    REG_DATA = {
+        'login': 'qwerty',
+        'name': 'Тест',
+        'email': 'emastgdtl@test.ru',
+        'password': '123456Qq'
+    }
+
     def setUp(self) -> None:
         browser = os.environ.get('BROWSER', 'CHROME')
 
@@ -21,7 +32,14 @@ class DefaultTest(unittest.TestCase):
     def tearDown(self):
         self.driver.quit()
 
-    def auth(self):
+    def auth_client(self):
         authStep = AuthStep(self.driver)
         authStep.auth(self.EMAIL, self.PASSWORD)
+        authStep.page.wait_profile_container()
+        return authStep
+
+    def auth_executor(self):
+        authStep = AuthStep(self.driver)
+        authStep.auth(self.EMAIL_EXECUTOR, self.PASSWORD_EXECUTOR)
+        authStep.page.wait_profile_container()
         return authStep
