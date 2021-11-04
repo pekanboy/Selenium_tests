@@ -16,23 +16,29 @@ class CreateOrderPage(DefaultPage):
     ORDER_PAGE_TITLE = '//div[@class="orderPage__order_title"]'
 
     def fill_header(self, header):
+        self.waitOfVisible(self.HEADER_INPUT)
         self.sendKeysOnElement(self.HEADER_INPUT, header)
 
     def fill_budget(self, budget):
+        self.waitOfVisible(self.BUDGET_INPUT)
         self.sendKeysOnElement(self.BUDGET_INPUT, budget)
 
     def fill_deadline(self, deadline):
+        self.waitOfVisible(self.DEADLINE_INPUT)
         self.sendKeysOnElement(self.DEADLINE_INPUT, deadline)
 
     def select_category(self):
+        self.waitOfVisible(self.CATEGORY)
         self.clickOnElement(self.CATEGORY)
         self.waitOfVisible(self.CATEGORY_NAME)
         self.clickOnElement(self.CATEGORY_NAME)
 
     def fill_discription(self, desc):
+        self.waitOfVisible(self.DESCRIPTION)
         self.sendKeysOnElement(self.DESCRIPTION, desc)
     
     def submit(self):
+        self.waitOfVisible(self.SUBMIT)
         self.clickOnElement(self.SUBMIT)
 
     def wait_create_order_form(self):
