@@ -10,6 +10,10 @@ class DefaultTest(unittest.TestCase):
     PASSWORD = '123456Qq'  # os.environ['PASSWORD']
     LOGIN = 'Hello'  # os.environ['LOGIN']
 
+    EMAIL_CLIENT = 'Bars@barsilla.ru'  # os.environ['EMAIL']
+    PASSWORD_CLIENT = '123456Qq'  # os.environ['PASSWORD']
+    LOGIN_CLIENT = 'Bars'  # os.environ['LOGIN']
+
     def setUp(self) -> None:
         browser = os.environ.get('BROWSER', 'CHROME')
 
@@ -24,4 +28,9 @@ class DefaultTest(unittest.TestCase):
     def auth(self):
         authStep = AuthStep(self.driver)
         authStep.auth(self.EMAIL, self.PASSWORD)
+        return authStep
+
+    def auth_client(self):
+        authStep = AuthStep(self.driver)
+        authStep.auth(self.EMAIL_CLIENT, self.PASSWORD_CLIENT)
         return authStep
