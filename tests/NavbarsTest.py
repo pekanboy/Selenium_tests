@@ -49,7 +49,7 @@ class NavbarsTest(DefaultTest):
                          )
 
     def test_vacancies_spec(self):
-        self.auth()
+        self.auth_executor()
         reg_step = NavbarsStep(self.driver)
         is_ok = reg_step.check_redirect_vacancies_spec()
         self.assertEqual(is_ok,
@@ -58,7 +58,7 @@ class NavbarsTest(DefaultTest):
                          )
 
     def test_orders_spec(self):
-        self.auth()
+        self.auth_executor()
         reg_step = NavbarsStep(self.driver)
         is_ok = reg_step.check_redirect_orders_spec()
         self.assertEqual(is_ok,

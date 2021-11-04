@@ -17,7 +17,7 @@ class DefaultTest(unittest.TestCase):
     REG_DATA = {
         'login': 'qwerty',
         'name': 'Тест',
-        'email': 'emastgdtl@test.ru',
+        'email': 'asdasd@test.ru',
         'password': '123456Qq'
     }
 
@@ -41,4 +41,5 @@ class DefaultTest(unittest.TestCase):
     def auth_client(self):
         authStep = AuthStep(self.driver)
         authStep.auth(self.EMAIL_CLIENT, self.PASSWORD_CLIENT)
+        authStep.page.wait_profile_container()
         return authStep

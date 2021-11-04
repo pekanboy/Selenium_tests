@@ -11,9 +11,9 @@ class AuthTest(DefaultTest):
         authStep = self.auth_client()
         login = authStep.check_auth()
         self.assertEqual(login,
-                         self.LOGIN,
+                         self.LOGIN_EXECUTOR,
                          f'Авторизоваться не удалось: логин на странице профия ${login} '
-                         f'не совпадает с ожидаемым ${self.LOGIN}'
+                         f'не совпадает с ожидаемым ${self.LOGIN_EXECUTOR}'
                          )
 
     def test_err_auth_user(self):

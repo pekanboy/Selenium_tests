@@ -42,7 +42,6 @@ class SearchStep(DefaultStep):
     def checkClickToResultCardOrder(self):
         toOrder = [
             self.page.TITLE,
-            self.page.MORE_DESCR
         ]
         toUser = [
             self.page.AVATAR,
@@ -68,7 +67,6 @@ class SearchStep(DefaultStep):
             filters['searchFor'][only]
         )
         self.page.submit()
-        self.page.waitOfVisible(xpath)
         self.page.clickOnElement(xpath)
 
     def checkMoveToOrder(self):
