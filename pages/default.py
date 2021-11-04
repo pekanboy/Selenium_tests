@@ -21,12 +21,15 @@ class DefaultPage:
         return self.driver.get_cookies()
 
     def clickOnElement(self, xpath):
+        self.waitOfVisible(xpath)
         self.driver.find_element_by_xpath(xpath).click()
 
     def sendKeysOnElement(self, xpath, value):
+        self.waitOfVisible(xpath)
         self.driver.find_element_by_xpath(xpath).send_keys(value)
 
     def getTextFromElement(self, xpath):
+        self.waitOfVisible(xpath)
         return self.driver.find_element_by_xpath(xpath).text
 
     def waitOfVisible(self, xpath):
@@ -34,6 +37,12 @@ class DefaultPage:
             lambda d: expected_conditions.visibility_of(d.find_element_by_xpath(xpath))
         )
 
+    def fill(self, xpath, val):
+        self.waitOfVisible(xpath)
+        self.clickOnElement(xpath)
+        self.sendKeysOnElement(xpath, val)
+        return self.getTextFromElement(xpath)
+      
     def clear_field(self, xpath):
         self.driver.find_element_by_xpath(xpath).clear()
 
