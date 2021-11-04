@@ -2,6 +2,7 @@ from urllib.parse import urljoin
 
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
+from selenium.common.exceptions import NoSuchElementException
 
 
 class DefaultPage:
@@ -41,3 +42,13 @@ class DefaultPage:
         self.clickOnElement(xpath)
         self.sendKeysOnElement(xpath, val)
         return self.getTextFromElement(xpath)
+      
+    def clear_field(self, xpath):
+        self.driver.find_element_by_xpath(xpath).clear()
+
+    def check_exists_by_xpath(self, xpath):
+        try:
+            self.driver.find_element_by_xpath(xpath)
+        except NoSuchElementException:
+            return False
+        return True
