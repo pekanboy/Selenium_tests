@@ -1,5 +1,5 @@
-from steps.AuthStep import AuthStep
 from tests.default import DefaultTest
+from pages.AuthPage import AuthPage as Page
 
 
 class AuthTest(DefaultTest):
@@ -8,14 +8,16 @@ class AuthTest(DefaultTest):
         Тестирование успешной авторизации пользователя по почте и паролю
         :return:
         """
-        authStep = self.auth_client()
-        login = authStep.check_auth()
-        self.assertEqual(login,
-                         self.LOGIN_EXECUTOR,
-                         f'Авторизоваться не удалось: логин на странице профия ${login} '
-                         f'не совпадает с ожидаемым ${self.LOGIN_EXECUTOR}'
-                         )
+        self.initPage(Page(self.driver))
+        self.auth_client()
+        self.page.wait_profile_container()
+        login = self.page.get_login_in_profile()
+        self.assertEqual(login, self.LOGIN_EXECUTOR,
+                         f'Авторизация не прошла')
 
     def test_err_auth_user(self):
-        authStep = AuthStep(self.driver)
-        authStep.check_err_auth()
+        self.initPage(Page(self.driver))
+        self.auth('err_email', 'password')
+        error_text = self.page.get_error()
+        self.assertEqual(len(error_text) > 0, True,
+                         f'Сообщение о неудачной авторизации не отобразилось')

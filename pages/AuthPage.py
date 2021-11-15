@@ -46,6 +46,7 @@ class AuthPage(DefaultPage):
         """
         return self.getTextFromElement(self.LOGIN_IN_PROFILE)
 
-    def wait_error(self):
-        return self.waitOfVisible(self.ERROR_MESSAGE)
+    def get_error(self):
+        self.waitOfVisible(self.ERROR_MESSAGE)
+        return self.getTextFromElement(self.ERROR_MESSAGE)
 
