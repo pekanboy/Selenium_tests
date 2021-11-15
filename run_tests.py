@@ -27,7 +27,7 @@ if __name__ == '__main__':
         # unittest.makeSuite(OrderTest),
         # unittest.makeSuite(ChangeOrderTest),
         # unittest.makeSuite(CreateVacancyTest),
-        # unittest.makeSuite(VacancyTest),
+        unittest.makeSuite(VacancyTest),
         # unittest.makeSuite(ChangeVacancyrTest),
         unittest.makeSuite(ExecutorRegTest),
         unittest.makeSuite(ClientRegTest),

@@ -25,7 +25,6 @@ class ChangeOrderStep(DefaultStep):
         descrioption = 'закажите мне питсы но теперь побольше'
 
         self.page.open()
-        self.page.waitOfVisible(self.CHANGE_BUTTON)
         self.page.clickOnElement(self.CHANGE_BUTTON)
         self.page.waitOfVisible(self.SETTINGS_LABEL)
 
