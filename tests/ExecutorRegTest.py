@@ -1,17 +1,26 @@
 from tests.default import DefaultTest
-from steps.ExecutorRegStep import ExecutorRegStep
+from pages.ExecutorRegPage import ExecutorRegPage as Page
 
 
 class ExecutorRegTest(DefaultTest):
     def test_error_select_spec(self):
-        step = ExecutorRegStep(self.driver)
-        step.check_error_select_spec()
+        self.initPage(Page(self.driver))
+
+        self.page.open()
+        self.page.submit_spec()
+        self.page.check_select_error()
 
     def test_success_select_spec(self):
-        step = ExecutorRegStep(self.driver)
-        res = step.check_success_select_spec()
+        self.initPage(Page(self.driver))
+
+        self.page.open()
+        self.page.select_spec()
+        select = self.page.check_selected_spec()
+        self.page.submit_spec()
+        self.page.wait_reg_page()
+
         self.assertEqual(
-            len(res) > 0,
+            len(select) > 0,
             True,
             'Не удалось выбрать специализацию'
         )
