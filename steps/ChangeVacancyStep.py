@@ -74,7 +74,6 @@ class ChangeVacancyStep(DefaultStep):
         self.page.select_category()
         return self.page.check_error(self.ERR_SUMM)
 
-
     def check_description_empty_input(self):
         self.page.open()
         self.page.clickOnElement(self.CHANGE_BUTTON)

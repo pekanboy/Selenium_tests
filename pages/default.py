@@ -47,6 +47,7 @@ class DefaultPage:
         self.driver.find_element_by_xpath(xpath).clear()
 
     def check_exists_by_xpath(self, xpath):
+        self.waitOfVisible(xpath)
         try:
             self.driver.find_element_by_xpath(xpath)
         except NoSuchElementException:

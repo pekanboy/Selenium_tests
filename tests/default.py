@@ -1,5 +1,6 @@
 import unittest
 from selenium.webdriver import DesiredCapabilities, Remote
+from pages.AuthPage import AuthPage
 import os
 
 
@@ -31,16 +32,21 @@ class DefaultTest(unittest.TestCase):
         self.driver.quit()
 
     def auth_executor(self):
+        auth = AuthPage(self.driver)
         self.auth(self.EMAIL_EXECUTOR, self.PASSWORD_EXECUTOR)
+        auth.wait_profile_container()
 
     def auth_client(self):
+        auth = AuthPage(self.driver)
         self.auth(self.EMAIL_CLIENT, self.PASSWORD_CLIENT)
+        auth.wait_profile_container()
 
     def auth(self, email, password):
-        self.page.open()
-        self.page.fill_Email(email)
-        self.page.fill_password(password)
-        self.page.submit()
+        auth = AuthPage(self.driver)
+        auth.open()
+        auth.fill_Email(email)
+        auth.fill_password(password)
+        auth.submit()
 
     def initPage(self, page):
         self.page = page

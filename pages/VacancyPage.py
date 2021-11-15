@@ -17,20 +17,15 @@ class VacancyPage(DefaultPage):
     SELECT_TEXT = "//*[contains(text(), 'Связаться')]"
 
     def check_select_button(self):
-        self.waitOfVisible(self.SELECT_BUTTON)
         self.clickOnElement(self.SELECT_BUTTON)
-        self.waitOfVisible(self.SELECT_TEXT)
         is_select = self.check_exists_by_xpath(self.SELECT_TEXT)
         if is_select:
             self.clickOnElement(self.CANCEL_BUTTON)
         return is_select
 
     def check_cancel_button(self):
-        self.waitOfVisible(self.SELECT_BUTTON)
         self.clickOnElement(self.SELECT_BUTTON)
-        self.waitOfVisible(self.CANCEL_BUTTON)
         self.clickOnElement(self.CANCEL_BUTTON)
-        self.waitOfVisible(self.SELECT_BUTTON)
         is_select = self.check_exists_by_xpath(self.SELECT_BUTTON)
         return is_select
 
