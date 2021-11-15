@@ -41,8 +41,8 @@ class ChangeOrderTest(DefaultTest):
         self.page.submit()
         result_order = self.page.check_change_order()
         self.assertEqual(
-            order_name,
             result_order,
+            order_name,
             f"Изменить заказ не удалось:  имя заказа ${order_name} "
             f"не совпадает с ожидаемым ${result_order}",
         )

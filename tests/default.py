@@ -5,19 +5,19 @@ import os
 
 
 class DefaultTest(unittest.TestCase):
-    EMAIL_EXECUTOR = os.environ['EMAIL_EXECUTOR']
-    PASSWORD_EXECUTOR = os.environ['PASSWORD_EXECUTOR']
-    LOGIN_EXECUTOR = os.environ['LOGIN_EXECUTOR']
+    EMAIL_EXECUTOR = os.environ["EMAIL_EXECUTOR"]
+    PASSWORD_EXECUTOR = os.environ["PASSWORD_EXECUTOR"]
+    LOGIN_EXECUTOR = os.environ["LOGIN_EXECUTOR"]
 
-    EMAIL_CLIENT = os.environ['EMAIL_CLIENT']
-    PASSWORD_CLIENT = os.environ['PASSWORD_CLIENT']
-    LOGIN_CLIENT = os.environ['LOGIN_CLIENT']
+    EMAIL_CLIENT = os.environ["EMAIL_CLIENT"]
+    PASSWORD_CLIENT = os.environ["PASSWORD_CLIENT"]
+    LOGIN_CLIENT = os.environ["LOGIN_CLIENT"]
 
     REG_DATA = {
-        "login": os.environ['REG_LOGIN'],
-        "name": os.environ['REG_NAME'],
-        "email": os.environ['REG_EMAIL'],
-        "password": os.environ['REG_PASSWORD'],
+        "login": os.environ["REG_LOGIN"],
+        "name": os.environ["REG_NAME"],
+        "email": os.environ["REG_EMAIL"],
+        "password": os.environ["REG_PASSWORD"],
     }
 
     def setUp(self) -> None:

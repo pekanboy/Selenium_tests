@@ -37,12 +37,12 @@ class ChangeVacancyrTest(DefaultTest):
         self.page.fill_discription(descrioption)
         self.page.submit()
 
-        vacancy, expect_vacancy = vacancy_name, self.page.check_change_vacancy()
+        real_vacancy = self.page.check_change_vacancy()
         self.assertEqual(
-            vacancy,
-            expect_vacancy,
-            f"Изменить заказ не удалось:  имя заказа ${vacancy} "
-            f"не совпадает с ожидаемым ${expect_vacancy}",
+            real_vacancy,
+            vacancy_name,
+            f"Изменить заказ не удалось:  имя заказа ${real_vacancy} "
+            f"не совпадает с ожидаемым ${vacancy_name}",
         )
 
     def test_empty_header_input(self):

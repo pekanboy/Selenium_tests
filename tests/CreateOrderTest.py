@@ -24,12 +24,12 @@ class CreateOrderTest(DefaultTest):
         self.page.select_category()
         self.page.fill_discription(descrioption)
         self.page.submit()
-        order, expect_order = order_name, self.page.check_create_order()
+        real_order = self.page.check_create_order()
         self.assertEqual(
-            order,
-            expect_order,
-            f"Создать заказ не удалось:  имя заказа ${order} "
-            f"не совпадает с ожидаемым ${expect_order}",
+            real_order,
+            order_name,
+            f"Создать заказ не удалось:  имя заказа ${real_order} "
+            f"не совпадает с ожидаемым ${order_name}",
         )
 
     def test_empty_header_input(self):
