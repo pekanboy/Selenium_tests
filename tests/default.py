@@ -16,7 +16,7 @@ class DefaultTest(unittest.TestCase):
     REG_DATA = {
         'login': 'qwerty',
         'name': 'Тест',
-        'email': 'asdasd@test.ru',
+        'email': 'asdas12d@test.ru',
         'password': '123456Qq'
     }
 
