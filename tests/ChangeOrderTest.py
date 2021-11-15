@@ -23,6 +23,7 @@ class ChangeOrderTest(DefaultTest):
                             True,
                             f'Ошибка инпута не появилась'
         )
+
     def test_long_header_input(self):
         self.auth_client()
 

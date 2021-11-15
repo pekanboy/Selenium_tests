@@ -36,26 +36,25 @@ class ClientRegPage(DefaultPage):
         return self.fill(self.PASSWORD_REPEAT_INPUT, password)
 
     def check_error_login(self):
-        return self.waitOfVisible(self.LOGIN_ERROR)
+        return self.getTextFromElement(self.LOGIN_ERROR)
 
     def check_error_name_lang(self):
-        return self.waitOfVisible(self.NAME_ERROR_LANG)
+        return self.getTextFromElement(self.NAME_ERROR_LANG)
 
     def check_error_name_length(self):
-        return self.waitOfVisible(self.NAME_ERROR_LENGTH)
+        return self.getTextFromElement(self.NAME_ERROR_LENGTH)
 
     def check_error_email(self):
-        return self.waitOfVisible(self.EMAIL_ERROR)
+        return self.getTextFromElement(self.EMAIL_ERROR)
 
     def check_error_password(self):
-        return self.waitOfVisible(self.PASSWORD_ERROR)
+        return self.getTextFromElement(self.PASSWORD_ERROR)
 
     def check_error_password_repeat(self):
-        return self.waitOfVisible(self.PASSWORD_REPEAT_ERROR)
+        return self.getTextFromElement(self.PASSWORD_REPEAT_ERROR)
 
     def submit(self):
         self.clickOnElement(self.SUBMIT)
 
     def get_login_in_profile(self):
-        self.waitOfVisible(self.LOGIN_IN_PROFILE)
         return self.getTextFromElement(self.LOGIN_IN_PROFILE)

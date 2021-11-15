@@ -1,14 +1,13 @@
 import unittest
 from selenium.webdriver import DesiredCapabilities, Remote
+from pages.AuthPage import AuthPage
 import os
-
-from steps.AuthStep import AuthStep
 
 
 class DefaultTest(unittest.TestCase):
     EMAIL_EXECUTOR = 'test_ex@mail.ru'
     PASSWORD_EXECUTOR = '123456Qq'  # os.environ['PASSWORD']
-    LOGIN_EXECUTOR = 'test'
+    LOGIN_EXECUTOR = 'Bars'
 
     EMAIL_CLIENT = 'kek228@mail.ru'  # os.environ['EMAIL_CLIENT']
     PASSWORD_CLIENT = 'Vbrhjajy1878'  # os.environ['PASSWORD_CLIENT']
@@ -17,10 +16,9 @@ class DefaultTest(unittest.TestCase):
     REG_DATA = {
         'login': 'qwerty',
         'name': 'Тест',
-        'email': 'asdasd@test.ru',
+        'email': 'asdas12d@test.ru',
         'password': '123456Qq'
     }
-
 
     def setUp(self) -> None:
         browser = os.environ.get('BROWSER', 'CHROME')
@@ -34,13 +32,21 @@ class DefaultTest(unittest.TestCase):
         self.driver.quit()
 
     def auth_executor(self):
-        authStep = AuthStep(self.driver)
-        authStep.auth(self.EMAIL_EXECUTOR, self.PASSWORD_EXECUTOR)
-        authStep.page.wait_profile_container()
-        return authStep
+        auth = AuthPage(self.driver)
+        self.auth(self.EMAIL_EXECUTOR, self.PASSWORD_EXECUTOR)
+        auth.wait_profile_container()
 
     def auth_client(self):
-        authStep = AuthStep(self.driver)
-        authStep.auth(self.EMAIL_CLIENT, self.PASSWORD_CLIENT)
-        authStep.page.wait_profile_container()
-        return authStep
+        auth = AuthPage(self.driver)
+        self.auth(self.EMAIL_CLIENT, self.PASSWORD_CLIENT)
+        auth.wait_profile_container()
+
+    def auth(self, email, password):
+        auth = AuthPage(self.driver)
+        auth.open()
+        auth.fill_Email(email)
+        auth.fill_password(password)
+        auth.submit()
+
+    def initPage(self, page):
+        self.page = page
