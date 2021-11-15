@@ -1,13 +1,43 @@
-from steps.ChangeVacancyStep import ChangeVacancyStep
+from pages.ChangeVacancyPage import ChangeVacancyPage 
 from tests.default import DefaultTest
+import random
+import string
 
 
 class ChangeVacancyrTest(DefaultTest):
-    def test_create_vacancy(self):
+    ERR_LENGTH = "//*[contains(text(), 'Недопустимая длина')]"
+    ERR_SUMM = "//*[contains(text(), 'Недопустимая сумма')]"
+    ERR_DATE = "//*[contains(text(), 'Некорректная дата')]"
+    ERR_FUTURE = "//*[contains(text(), 'Вряд ли вы столько проживёте...')]"
+    CHANGE_BUTTON = '//button[@class="vacancyPage__customer-button_change"]'
+
+    SETTINGS_LABEL = '//div[@class="settings__label"]'
+
+    def test_change_vacancy(self):
+        self.initPage(ChangeVacancyPage(self.driver))
         self.auth_client()
 
-        step = ChangeVacancyStep(self.driver)
-        vacancy, expect_vacancy = step.check_change_vacancy()
+        letters = string.ascii_lowercase
+        result_str = ''.join(random.choice(letters) for i in range(10))
+        vacancy_name = 'хочу многа питсы' + result_str
+        vacancy_budget = 228
+        descrioption = 'закажите мне питсы но теперь побольше'
+
+        self.page.open()
+        self.page.clickOnElement(self.CHANGE_BUTTON)
+        self.page.waitOfVisible(self.SETTINGS_LABEL)
+
+        self.page.clear_header()
+        self.page.clear_budget()
+        self.page.clear_description()
+
+        self.page.fill_header(vacancy_name)
+        self.page.fill_budget(vacancy_budget)
+        self.page.select_category()
+        self.page.fill_discription(descrioption)
+        self.page.submit()
+
+        vacancy, expect_vacancy = vacancy_name, self.page.check_change_vacancy()
         self.assertEqual(   vacancy,
                             expect_vacancy,
                             f'Изменить заказ не удалось:  имя заказа ${vacancy} '
@@ -15,64 +45,105 @@ class ChangeVacancyrTest(DefaultTest):
         )
 
     def test_empty_header_input(self):
+        self.initPage(ChangeVacancyPage(self.driver))
         self.auth_client()
 
-        step = ChangeVacancyStep(self.driver)
-        is_err = step.check_header_empty_input()
+        self.page.open()
+        self.page.clickOnElement(self.CHANGE_BUTTON)
+        self.page.waitOfVisible(self.SETTINGS_LABEL)
+        self.page.clear_header()
+        self.page.fill_header('')
+        self.page.select_category()
+
+        is_err = self.page.check_error(self.ERR_LENGTH)
         self.assertEqual(   is_err,
                             True,
                             f'Ошибка инпута не появилась'
         )
     def test_long_header_input(self):
+        self.initPage(ChangeVacancyPage(self.driver))
         self.auth_client()
 
-        step = ChangeVacancyStep(self.driver)
-        is_err = step.check_header_long_input()
+        self.page.open()
+        self.page.clickOnElement(self.CHANGE_BUTTON)
+        self.page.waitOfVisible(self.SETTINGS_LABEL)
+        self.page.clear_header()
+        self.page.fill_header('asfsыаasfsыаasfsыаasfsыаasfsыаasfsыаasfsыаasfsыаasfsыаasfsыаasfsыаasfsыаasfsыаasfsыаasfsыаasfsыаasfsыаasfsыаasfsыаasfsыаasfsыа')
+        self.page.select_category()
+
+        is_err = self.page.check_error(self.ERR_LENGTH)
         self.assertEqual(   is_err,
                             True,
                             f'Ошибка инпута не появилась'
         )
     def test_budget_empty_input(self):
+        self.initPage(ChangeVacancyPage(self.driver))
         self.auth_client()
+        self.page.open()
+        self.page.clickOnElement(self.CHANGE_BUTTON)
+        self.page.waitOfVisible(self.SETTINGS_LABEL)
+        self.page.clear_budget()
+        self.page.fill_budget('')
+        self.page.select_category()
 
-        step = ChangeVacancyStep(self.driver)
-        is_err = step.check_budget_empty_input()
+        is_err = self.page.check_error(self.ERR_SUMM)
         self.assertEqual(   is_err,
                             True,
                             f'Ошибка инпута не появилась'
         )
     def test_budget_long_input(self):
+        self.initPage(ChangeVacancyPage(self.driver))
         self.auth_client()
+        self.page.open()
+        self.page.clickOnElement(self.CHANGE_BUTTON)
+        self.page.waitOfVisible(self.SETTINGS_LABEL)
+        self.page.clear_budget()
+        self.page.fill_budget(123123123123123)
+        self.page.select_category()
 
-        step = ChangeVacancyStep(self.driver)
-        is_err = step.check_budget_long_input()
+        is_err = self.page.check_error(self.ERR_SUMM)
         self.assertEqual(   is_err,
                             True,
                             f'Ошибка инпута не появилась'
         )
     def test_descritiopn_empty_input(self):
+        self.initPage(ChangeVacancyPage(self.driver))
         self.auth_client()
+        self.page.open()
+        self.page.clickOnElement(self.CHANGE_BUTTON)
+        self.page.waitOfVisible(self.SETTINGS_LABEL)
+        self.page.clear_description()
+        self.page.fill_discription('')
+        self.page.select_category()
 
-        step = ChangeVacancyStep(self.driver)
-        is_err = step.check_description_empty_input()
+        is_err = self.page.check_error(self.ERR_LENGTH)
         self.assertEqual(   is_err,
                             True,
                             f'Ошибка инпута не появилась'
         )
     def test_descritiopn_long_input(self):
+        self.initPage(ChangeVacancyPage(self.driver))
         self.auth_client()
+        self.page.open()
+        self.page.clickOnElement(self.CHANGE_BUTTON)
+        self.page.waitOfVisible(self.SETTINGS_LABEL)
+        self.page.clear_description()
+        self.page.fill_discription('asdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkska')
+        self.page.select_category()
 
-        step = ChangeVacancyStep(self.driver)
-        is_err = step.check_description_long_input()
+        is_err = self.page.check_error(self.ERR_LENGTH)
         self.assertEqual(   is_err,
                             True,
                             f'Ошибка инпута не появилась'
         )
     def test_cancel_button(self):
+        self.initPage(ChangeVacancyPage(self.driver))
         self.auth_client()
+        self.page.open()
+        self.page.clickOnElement(self.CHANGE_BUTTON)
+        self.page.waitOfVisible(self.SETTINGS_LABEL)
 
-        step = ChangeVacancyStep(self.driver)
-        is_cancel = step.check_cancel_button()
+        is_cancel = self.page.chek_cancel()
         self.assertEqual(   is_cancel,
                             True,
                             f'Изменения не отменились'
