@@ -2,7 +2,7 @@ from pages.default import DefaultPage
 
 
 class ClientRegPage(DefaultPage):
-    PATH = '/client-reg'
+    PATH = "/client-reg"
 
     LOGIN_INPUT = '//input[@name="login"]'
     LOGIN_ERROR = '//*[contains(text(),"Неподходящий логин")]'

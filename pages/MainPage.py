@@ -9,7 +9,7 @@ class MainPage(DefaultPage):
     LOGIN_IN_PROFILE = '//div[@class="nickname__text"]'
     REG_SPEC = '//div[@class="specMainContent__title"]'
     REG_CLIENT = '//div[@class="custom-form__label"]'
-    PATH = ''
+    PATH = ""
 
     def click_spec(self):
         """
@@ -52,4 +52,3 @@ class MainPage(DefaultPage):
         :return: Boolean
         """
         return self.getTextFromElement(self.REG_CLIENT)
-

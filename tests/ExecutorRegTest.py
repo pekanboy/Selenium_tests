@@ -19,8 +19,4 @@ class ExecutorRegTest(DefaultTest):
         self.page.submit_spec()
         self.page.wait_reg_page()
 
-        self.assertEqual(
-            len(select) > 0,
-            True,
-            'Не удалось выбрать специализацию'
-        )
+        self.assertEqual(len(select) > 0, True, "Не удалось выбрать специализацию")

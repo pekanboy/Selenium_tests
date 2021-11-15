@@ -24,7 +24,7 @@ class NavbarsPage(DefaultPage):
     REG_CLIENT = '//div[@class="custom-form__label"]'
     REG_SPEC = '//div[@class="specMainContent__select"]'
     LOGIN = '//div[@class="custom-form__label"]'
-    PATH = ''
+    PATH = ""
 
     def click_login(self):
         """

@@ -9,11 +9,7 @@ class ProfileTest(DefaultTest):
 
         about = self.page.get_about_text()
 
-        self.assertEqual(
-            about != '',
-            True,
-            'Описание пользователся не отображается'
-        )
+        self.assertEqual(about != "", True, "Описание пользователся не отображается")
 
     def test_delete_add_spec(self):
         self.initPage(Page(self.driver))
@@ -26,11 +22,7 @@ class ProfileTest(DefaultTest):
         self.page.delete_spec()
         after = len(self.page.get_specs())
 
-        self.assertNotEqual(
-            before,
-            after,
-            'Не удалось удалить специализацию'
-        )
+        self.assertNotEqual(before, after, "Не удалось удалить специализацию")
 
     def test_exit(self):
         self.initPage(Page(self.driver))
@@ -39,7 +31,4 @@ class ProfileTest(DefaultTest):
         self.page.click_on_exit()
         cookies = self.page.get_cookies()
 
-        self.assertEqual(
-            cookies[0].get('sessionID'),
-            None
-        )
+        self.assertEqual(cookies[0].get("sessionID"), None)

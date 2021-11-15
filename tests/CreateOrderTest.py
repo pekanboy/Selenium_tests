@@ -1,4 +1,4 @@
-from pages.CreateOrderPage import CreateOrderPage 
+from pages.CreateOrderPage import CreateOrderPage
 from tests.default import DefaultTest
 
 
@@ -7,15 +7,15 @@ class CreateOrderTest(DefaultTest):
     ERR_SUMM = "//*[contains(text(), 'Недопустимая сумма')]"
     ERR_DATE = "//*[contains(text(), 'Некорректная дата')]"
     ERR_FUTURE = "//*[contains(text(), 'Вряд ли вы столько проживёте...')]"
-    
+
     def test_create_order(self):
         self.initPage(CreateOrderPage(self.driver))
         self.auth_client()
 
-        order_name = 'хочу питсы'
+        order_name = "хочу питсы"
         order_budget = 228
         order_deadline = 10102022
-        descrioption = 'закажите мне питсы'
+        descrioption = "закажите мне питсы"
 
         self.page.open()
         self.page.fill_header(order_name)
@@ -25,48 +25,45 @@ class CreateOrderTest(DefaultTest):
         self.page.fill_discription(descrioption)
         self.page.submit()
         order, expect_order = order_name, self.page.check_create_order()
-        self.assertEqual(   order,
-                            expect_order,
-                            f'Создать заказ не удалось:  имя заказа ${order} '
-                            f'не совпадает с ожидаемым ${expect_order}'
-                        )
+        self.assertEqual(
+            order,
+            expect_order,
+            f"Создать заказ не удалось:  имя заказа ${order} "
+            f"не совпадает с ожидаемым ${expect_order}",
+        )
 
     def test_empty_header_input(self):
         self.initPage(CreateOrderPage(self.driver))
         self.auth_client()
         self.page.open()
-        self.page.fill_header('')
+        self.page.fill_header("")
         self.page.select_category()
 
         is_err = self.page.check_error(self.ERR_LENGTH)
-        self.assertEqual(   is_err,
-                            True,
-                            f'Ошибка инпута не появилась'
-                        )
+        self.assertEqual(is_err, True, f"Ошибка инпута не появилась")
+
     def test_long_header_input(self):
         self.initPage(CreateOrderPage(self.driver))
         self.auth_client()
         self.page.open()
-        self.page.fill_header('asfsыаasfsыаasfsыаasfsыаasfsыаasfsыаasfsыаasfsыаasfsыаasfsыаasfsыаasfsыаasfsыаasfsыаasfsыаasfsыаasfsыаasfsыаasfsыаasfsыаasfsыа')
+        self.page.fill_header(
+            "asfsыаasfsыаasfsыаasfsыаasfsыаasfsыаasfsыаasfsыаasfsыаasfsыаasfsыаasfsыаasfsыаasfsыаasfsыаasfsыаasfsыаasfsыаasfsыаasfsыаasfsыа"
+        )
         self.page.select_category()
 
         is_err = self.page.check_error(self.ERR_LENGTH)
-        self.assertEqual(   is_err,
-                            True,
-                            f'Ошибка инпута не появилась'
-                        )
+        self.assertEqual(is_err, True, f"Ошибка инпута не появилась")
+
     def test_budget_empty_input(self):
         self.initPage(CreateOrderPage(self.driver))
         self.auth_client()
         self.page.open()
-        self.page.fill_budget('')
+        self.page.fill_budget("")
         self.page.select_category()
 
         is_err = self.page.check_error(self.ERR_SUMM)
-        self.assertEqual(   is_err,
-                            True,
-                            f'Ошибка инпута не появилась'
-                        )
+        self.assertEqual(is_err, True, f"Ошибка инпута не появилась")
+
     def test_budget_long_input(self):
         self.initPage(CreateOrderPage(self.driver))
         self.auth_client()
@@ -75,22 +72,17 @@ class CreateOrderTest(DefaultTest):
         self.page.select_category()
 
         is_err = self.page.check_error(self.ERR_SUMM)
-        self.assertEqual(   is_err,
-                            True,
-                            f'Ошибка инпута не появилась'
-                        )
+        self.assertEqual(is_err, True, f"Ошибка инпута не появилась")
+
     def test_deadline_empty_input(self):
         self.initPage(CreateOrderPage(self.driver))
         self.auth_client()
         self.page.open()
-        self.page.fill_deadline('')
+        self.page.fill_deadline("")
         self.page.select_category()
 
         is_err = self.page.check_error(self.ERR_DATE)
-        self.assertEqual(   is_err,
-                            True,
-                            f'Ошибка инпута не появилась'
-                        )
+        self.assertEqual(is_err, True, f"Ошибка инпута не появилась")
 
     def test_deadline_past_input(self):
         self.initPage(CreateOrderPage(self.driver))
@@ -100,10 +92,8 @@ class CreateOrderTest(DefaultTest):
         self.page.select_category()
 
         is_err = self.page.check_error(self.ERR_DATE)
-        self.assertEqual(   is_err,
-                            True,
-                            f'Ошибка инпута не появилась'
-                        )
+        self.assertEqual(is_err, True, f"Ошибка инпута не появилась")
+
     def test_deadline_future_input(self):
         self.initPage(CreateOrderPage(self.driver))
         self.auth_client()
@@ -112,31 +102,26 @@ class CreateOrderTest(DefaultTest):
         self.page.select_category()
 
         is_err = self.page.check_error(self.ERR_FUTURE)
-        self.assertEqual(   is_err,
-                            True,
-                            f'Ошибка инпута не появилась'
-                        )
+        self.assertEqual(is_err, True, f"Ошибка инпута не появилась")
+
     def test_descritiopn_empty_input(self):
         self.initPage(CreateOrderPage(self.driver))
         self.auth_client()
         self.page.open()
-        self.page.fill_discription('')
+        self.page.fill_discription("")
         self.page.select_category()
 
         is_err = self.page.check_error(self.ERR_LENGTH)
-        self.assertEqual(   is_err,
-                            True,
-                            f'Ошибка инпута не появилась'
-                        )
+        self.assertEqual(is_err, True, f"Ошибка инпута не появилась")
+
     def test_descritiopn_long_input(self):
         self.initPage(CreateOrderPage(self.driver))
         self.auth_client()
         self.page.open()
-        self.page.fill_discription('asdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkska')
+        self.page.fill_discription(
+            "asdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkskaasdfkfkska"
+        )
         self.page.select_category()
 
         is_err = self.page.check_error(self.ERR_LENGTH)
-        self.assertEqual(   is_err,
-                            True,
-                            f'Ошибка инпута не появилась'
-                        )
+        self.assertEqual(is_err, True, f"Ошибка инпута не появилась")

@@ -2,7 +2,7 @@ from pages.default import DefaultPage
 
 
 class AllOrdersPage(DefaultPage):
-    PATH = '/orders'
+    PATH = "/orders"
 
     AVATAR = '//img[@class="orders__order_img"]'
     TITLE = '//a[@class="orders__order_title"]'

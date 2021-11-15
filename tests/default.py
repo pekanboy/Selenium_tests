@@ -5,27 +5,27 @@ import os
 
 
 class DefaultTest(unittest.TestCase):
-    EMAIL_EXECUTOR = 'test_ex@mail.ru'
-    PASSWORD_EXECUTOR = '123456Qq'  # os.environ['PASSWORD']
-    LOGIN_EXECUTOR = 'Bars'
+    EMAIL_EXECUTOR = os.environ['EMAIL_EXECUTOR']
+    PASSWORD_EXECUTOR = os.environ['PASSWORD_EXECUTOR']
+    LOGIN_EXECUTOR = os.environ['LOGIN_EXECUTOR']
 
-    EMAIL_CLIENT = 'kek228@mail.ru'  # os.environ['EMAIL_CLIENT']
-    PASSWORD_CLIENT = 'Vbrhjajy1878'  # os.environ['PASSWORD_CLIENT']
-    LOGIN_CLIENT = 'kek228'  # os.environ['LOGIN_CLIENT']
-    
+    EMAIL_CLIENT = os.environ['EMAIL_CLIENT']
+    PASSWORD_CLIENT = os.environ['PASSWORD_CLIENT']
+    LOGIN_CLIENT = os.environ['LOGIN_CLIENT']
+
     REG_DATA = {
-        'login': 'qwerty',
-        'name': 'Тест',
-        'email': 'asdas12d@test.ru',
-        'password': '123456Qq'
+        "login": os.environ['REG_LOGIN'],
+        "name": os.environ['REG_NAME'],
+        "email": os.environ['REG_EMAIL'],
+        "password": os.environ['REG_PASSWORD'],
     }
 
     def setUp(self) -> None:
-        browser = os.environ.get('BROWSER', 'CHROME')
+        browser = os.environ.get("BROWSER", "CHROME")
 
         self.driver = Remote(
-            command_executor='http://127.0.0.1:4444/wd/hub',
-            desired_capabilities=getattr(DesiredCapabilities, browser).copy()
+            command_executor="http://127.0.0.1:4444/wd/hub",
+            desired_capabilities=getattr(DesiredCapabilities, browser).copy(),
         )
 
     def tearDown(self):

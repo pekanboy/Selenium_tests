@@ -2,7 +2,7 @@ from pages.default import DefaultPage
 
 
 class CreateVacancyPage(DefaultPage):
-    PATH = '/vacancy-create'
+    PATH = "/vacancy-create"
 
     HEADER_INPUT = '//input[@name="order_name"]'
     BUDGET_INPUT = '//input[@name="budget"]'
@@ -10,7 +10,7 @@ class CreateVacancyPage(DefaultPage):
     CATEGORY_NAME = '//li[@data-id="2"]'
     SUBMIT = '//button[@id="send_mess"]'
     VACANCY_CREATE_FORM = '//form[@id="order-create_form"]'
-    DESCRIPTION =  '//textarea[@name="description"]'
+    DESCRIPTION = '//textarea[@name="description"]'
 
     VACANCY_PAGE_TITLE = '//div[@class="orderPage__order_title"]'
 
@@ -31,7 +31,7 @@ class CreateVacancyPage(DefaultPage):
     def fill_discription(self, desc):
         self.waitOfVisible(self.DESCRIPTION)
         self.sendKeysOnElement(self.DESCRIPTION, desc)
-    
+
     def submit(self):
         self.waitOfVisible(self.SUBMIT)
         self.clickOnElement(self.SUBMIT)

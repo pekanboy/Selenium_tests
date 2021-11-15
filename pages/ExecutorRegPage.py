@@ -2,7 +2,7 @@ from pages.default import DefaultPage
 
 
 class ExecutorRegPage(DefaultPage):
-    PATH = '/add-spec'
+    PATH = "/add-spec"
 
     SELECT_SPEC = '//*[@name="category"]'
     SELECT_SPEC_ERR = '//*[@class="select__input form-control_error"]'

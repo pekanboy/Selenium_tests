@@ -7,10 +7,7 @@ class AllOrdersTest(DefaultTest):
         self.initPage(Page(self.driver))
         self.auth_executor()
 
-        toOrder = [
-            self.page.TITLE,
-            self.page.MORE_DESCR
-        ]
+        toOrder = [self.page.TITLE, self.page.MORE_DESCR]
         toUser = [
             self.page.AVATAR,
         ]

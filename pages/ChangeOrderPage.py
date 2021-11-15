@@ -2,7 +2,7 @@ from pages.default import DefaultPage
 
 
 class ChangeOrderPage(DefaultPage):
-    PATH = '/order/19'
+    PATH = "/order/19"
 
     HEADER_INPUT = '//input[@name="order_name"]'
     BUDGET_INPUT = '//input[@name="budget"]'
@@ -11,7 +11,7 @@ class ChangeOrderPage(DefaultPage):
     CATEGORY_NAME = '//li[@data-id="2"]'
     SUBMIT = '//button[@id="send_mess"]'
     ORDER_CREATE_FORM = '//form[@id="order-create_form"]'
-    DESCRIPTION =  '//textarea[@name="description"]'
+    DESCRIPTION = '//textarea[@name="description"]'
 
     ORDER_PAGE_TITLE = '//div[@class="orderPage__order_title"]'
 
@@ -25,7 +25,7 @@ class ChangeOrderPage(DefaultPage):
 
     def clear_deadline(self):
         self.clear_field(self.DEADLINE_INPUT)
-    
+
     def clear_description(self):
         self.clear_field(self.DESCRIPTION)
 
@@ -45,7 +45,7 @@ class ChangeOrderPage(DefaultPage):
 
     def fill_discription(self, desc):
         self.sendKeysOnElement(self.DESCRIPTION, desc)
-    
+
     def submit(self):
         self.clickOnElement(self.SUBMIT)
 
@@ -54,12 +54,11 @@ class ChangeOrderPage(DefaultPage):
 
     def check_error(self, err):
         return self.check_exists_by_xpath(err)
-    
+
     def chek_cancel(self):
-        self.clickOnElement(self.CANCEL_BUTTON) 
+        self.clickOnElement(self.CANCEL_BUTTON)
         self.waitOfVisible(self.ORDER_PAGE_TITLE)
         return self.check_exists_by_xpath(self.ORDER_PAGE_TITLE)
-
 
     def check_change_order(self):
         self.waitOfVisible(self.ORDER_PAGE_TITLE)

@@ -2,7 +2,7 @@ from pages.default import DefaultPage
 
 
 class CreateOrderPage(DefaultPage):
-    PATH = '/order-create'
+    PATH = "/order-create"
 
     HEADER_INPUT = '//input[@name="order_name"]'
     BUDGET_INPUT = '//input[@name="budget"]'
@@ -11,7 +11,7 @@ class CreateOrderPage(DefaultPage):
     CATEGORY_NAME = '//li[@data-id="2"]'
     SUBMIT = '//button[@id="send_mess"]'
     ORDER_CREATE_FORM = '//form[@id="order-create_form"]'
-    DESCRIPTION =  '//textarea[@name="description"]'
+    DESCRIPTION = '//textarea[@name="description"]'
 
     ORDER_PAGE_TITLE = '//div[@class="orderPage__order_title"]'
 
@@ -36,7 +36,7 @@ class CreateOrderPage(DefaultPage):
     def fill_discription(self, desc):
         self.waitOfVisible(self.DESCRIPTION)
         self.sendKeysOnElement(self.DESCRIPTION, desc)
-    
+
     def submit(self):
         self.waitOfVisible(self.SUBMIT)
         self.clickOnElement(self.SUBMIT)

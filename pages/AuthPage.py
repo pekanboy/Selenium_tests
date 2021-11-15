@@ -2,7 +2,7 @@ from pages.default import DefaultPage
 
 
 class AuthPage(DefaultPage):
-    PATH = '/login'
+    PATH = "/login"
     EMAIL_INPUT = '//input[@name="email"]'
     PASSWORD_INPUT = '//input[@name="password"]'
     SUBMIT = '//button[contains(text(),"Войти")]'
@@ -49,4 +49,3 @@ class AuthPage(DefaultPage):
     def get_error(self):
         self.waitOfVisible(self.ERROR_MESSAGE)
         return self.getTextFromElement(self.ERROR_MESSAGE)
-

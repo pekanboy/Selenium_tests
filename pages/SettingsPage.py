@@ -2,7 +2,7 @@ from pages.default import DefaultPage
 
 
 class SettingsPage(DefaultPage):
-    PATH = '/settings'
+    PATH = "/settings"
 
     LOGIN_INPUT = '//input[@name="login"]'
     NAME_INPUT = '//input[@name="name"]'
@@ -12,7 +12,7 @@ class SettingsPage(DefaultPage):
     ABOUT = '//textarea[@name="about"]'
     SUBMIT = '//button[@id="send_mess"]'
     ORDER_CREATE_FORM = '//form[@id="order-create_form"]'
-    DESCRIPTION =  '//textarea[@name="description"]'
+    DESCRIPTION = '//textarea[@name="description"]'
 
     PROFILE_PAGE_LOGIN = '//span[@class="user-name__text"]'
 

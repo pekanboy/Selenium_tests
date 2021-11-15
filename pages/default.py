@@ -2,12 +2,12 @@ from urllib.parse import urljoin
 
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
-from selenium.common.exceptions import NoSuchElementException        
+from selenium.common.exceptions import NoSuchElementException
 
 
 class DefaultPage:
-    BASE_URL = 'https://findfreelancer.ru'
-    PATH = ''
+    BASE_URL = "https://findfreelancer.ru"
+    PATH = ""
 
     def __init__(self, driver):
         self.driver = driver
@@ -42,7 +42,7 @@ class DefaultPage:
         self.clickOnElement(xpath)
         self.sendKeysOnElement(xpath, val)
         return self.getTextFromElement(xpath)
-      
+
     def clear_field(self, xpath):
         self.driver.find_element_by_xpath(xpath).clear()
 

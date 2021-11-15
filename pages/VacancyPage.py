@@ -2,7 +2,7 @@ from pages.default import DefaultPage
 
 
 class VacancyPage(DefaultPage):
-    PATH = 'vacancy/6'
+    PATH = "vacancy/6"
 
     SELECT_BUTTON = '//button[@data-id="66"]'
     CANCEL_BUTTON = '//button[@class="vacancyPage__comment-button_cancel"]'
@@ -57,7 +57,7 @@ class VacancyPage(DefaultPage):
         self.clickOnElement(self.NO_END_BUTTON)
         self.waitOfVisible(self.VACANCY_PAGE_TITLE)
         is_vacancy = self.check_exists_by_xpath(self.VACANCY_PAGE_TITLE)
-        if is_vacancy: 
+        if is_vacancy:
             self.waitOfVisible(self.CANCEL_BUTTON)
             self.clickOnElement(self.CANCEL_BUTTON)
         return self.check_exists_by_xpath(self.VACANCY_PAGE_TITLE)

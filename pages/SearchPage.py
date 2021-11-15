@@ -2,29 +2,29 @@ from pages.default import DefaultPage
 
 
 class SearchPage(DefaultPage):
-    PATH = '/search'
+    PATH = "/search"
     FILTERS = {
-        'searchFor': {
-            'this': '//textarea[@name="what"]',
-            'onlyUsers': '//*[@data-id=43]',
-            'onlyOrders': '//*[@data-id=41]',
-            'onlyVacancies': '//*[@data-id=42]'
+        "searchFor": {
+            "this": '//textarea[@name="what"]',
+            "onlyUsers": "//*[@data-id=43]",
+            "onlyOrders": "//*[@data-id=41]",
+            "onlyVacancies": "//*[@data-id=42]",
         },
-        'from': '//input[@name="salaryFrom"]',
-        'to': '//input[@name="salaryTo"]',
-        'sort': {
-            'this': '//textarea[@name="sort"]',
-            'rate': '//li[contains(text(),"Рейтингу")]',
+        "from": '//input[@name="salaryFrom"]',
+        "to": '//input[@name="salaryTo"]',
+        "sort": {
+            "this": '//textarea[@name="sort"]',
+            "rate": '//li[contains(text(),"Рейтингу")]',
         },
-        'desc': {
-            'this': '//textarea[@name="desc"]',
-            'down': '//li[contains(text(),"Уменьшению")]',
-            'up': '//li[contains(text(),"Возрастанию")]',
+        "desc": {
+            "this": '//textarea[@name="desc"]',
+            "down": '//li[contains(text(),"Уменьшению")]',
+            "up": '//li[contains(text(),"Возрастанию")]',
         },
-        'category': {
-            'this': '//textarea[@name="category"]',
-            'finance': '//li[contains(text(),"Финансовое планирование")]'
-        }
+        "category": {
+            "this": '//textarea[@name="category"]',
+            "finance": '//li[contains(text(),"Финансовое планирование")]',
+        },
     }
     SEARCH = '//input[@name="search"]'
     FIND = '//button[contains(text(),"Найти")]'
@@ -54,7 +54,7 @@ class SearchPage(DefaultPage):
         return self.driver.find_element_by_xpath(self.SEARCH).get_property("value")
 
     def fillClickableFilter(self, parent, child):
-        self.clickOnElement(parent['this'])
+        self.clickOnElement(parent["this"])
         self.clickOnElement(child)
 
     def fillFilter(self, xpath, value):
