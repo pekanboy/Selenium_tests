@@ -22,7 +22,7 @@ class NavbarsPage(DefaultPage):
     VACANCIES_SPEC = '//div[@class="orders__content"]'
     ORDERS_SPEC = '//div[@class="orders__list"]'
     REG_CLIENT = '//div[@class="custom-form__label"]'
-    REG_SPEC = '//div[@class="custom-form__label"]'
+    REG_SPEC = '//div[@class="specMainContent__select"]'
     LOGIN = '//div[@class="custom-form__label"]'
     PATH = ''
 
