@@ -1,4 +1,4 @@
-from pages.ChangeVacancyPage import ChangeVacancyPage
+from pages.VacancyPage import VacancyPage
 from tests.default import DefaultTest
 import random
 import string
@@ -14,7 +14,7 @@ class ChangeVacancyrTest(DefaultTest):
     SETTINGS_LABEL = '//div[@class="settings__label"]'
 
     def test_change_vacancy(self):
-        self.initPage(ChangeVacancyPage(self.driver))
+        self.initPage(VacancyPage(self.driver))
         self.auth_client()
 
         letters = string.ascii_lowercase
@@ -46,7 +46,7 @@ class ChangeVacancyrTest(DefaultTest):
         )
 
     def test_empty_header_input(self):
-        self.initPage(ChangeVacancyPage(self.driver))
+        self.initPage(VacancyPage(self.driver))
         self.auth_client()
 
         self.page.open()
@@ -60,7 +60,7 @@ class ChangeVacancyrTest(DefaultTest):
         self.assertEqual(is_err, True, f"Ошибка инпута не появилась")
 
     def test_long_header_input(self):
-        self.initPage(ChangeVacancyPage(self.driver))
+        self.initPage(VacancyPage(self.driver))
         self.auth_client()
 
         self.page.open()
@@ -76,7 +76,7 @@ class ChangeVacancyrTest(DefaultTest):
         self.assertEqual(is_err, True, f"Ошибка инпута не появилась")
 
     def test_budget_empty_input(self):
-        self.initPage(ChangeVacancyPage(self.driver))
+        self.initPage(VacancyPage(self.driver))
         self.auth_client()
         self.page.open()
         self.page.clickOnElement(self.CHANGE_BUTTON)
@@ -89,7 +89,7 @@ class ChangeVacancyrTest(DefaultTest):
         self.assertEqual(is_err, True, f"Ошибка инпута не появилась")
 
     def test_budget_long_input(self):
-        self.initPage(ChangeVacancyPage(self.driver))
+        self.initPage(VacancyPage(self.driver))
         self.auth_client()
         self.page.open()
         self.page.clickOnElement(self.CHANGE_BUTTON)
@@ -102,7 +102,7 @@ class ChangeVacancyrTest(DefaultTest):
         self.assertEqual(is_err, True, f"Ошибка инпута не появилась")
 
     def test_descritiopn_empty_input(self):
-        self.initPage(ChangeVacancyPage(self.driver))
+        self.initPage(VacancyPage(self.driver))
         self.auth_client()
         self.page.open()
         self.page.clickOnElement(self.CHANGE_BUTTON)
@@ -115,7 +115,7 @@ class ChangeVacancyrTest(DefaultTest):
         self.assertEqual(is_err, True, f"Ошибка инпута не появилась")
 
     def test_descritiopn_long_input(self):
-        self.initPage(ChangeVacancyPage(self.driver))
+        self.initPage(VacancyPage(self.driver))
         self.auth_client()
         self.page.open()
         self.page.clickOnElement(self.CHANGE_BUTTON)
@@ -130,7 +130,7 @@ class ChangeVacancyrTest(DefaultTest):
         self.assertEqual(is_err, True, f"Ошибка инпута не появилась")
 
     def test_cancel_button(self):
-        self.initPage(ChangeVacancyPage(self.driver))
+        self.initPage(VacancyPage(self.driver))
         self.auth_client()
         self.page.open()
         self.page.clickOnElement(self.CHANGE_BUTTON)

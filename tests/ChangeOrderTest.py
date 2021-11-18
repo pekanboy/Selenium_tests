@@ -1,4 +1,4 @@
-from pages.ChangeOrderPage import ChangeOrderPage
+from pages.OrderPage import OrderPage
 from tests.default import DefaultTest
 import random
 import string
@@ -13,7 +13,7 @@ class ChangeOrderTest(DefaultTest):
     SETTINGS_LABEL = '//div[@class="settings__label"]'
 
     def test_change_order(self):
-        self.initPage(ChangeOrderPage(self.driver))
+        self.initPage(OrderPage(self.driver))
 
         self.auth_client()
         letters = string.ascii_lowercase
@@ -48,7 +48,7 @@ class ChangeOrderTest(DefaultTest):
         )
 
     def test_empty_header_input(self):
-        self.initPage(ChangeOrderPage(self.driver))
+        self.initPage(OrderPage(self.driver))
         self.auth_client()
         self.page.open()
         self.page.clickOnElement(self.CHANGE_BUTTON)
@@ -60,7 +60,7 @@ class ChangeOrderTest(DefaultTest):
         self.assertEqual(is_err, True, f"Ошибка инпута не появилась")
 
     def test_long_header_input(self):
-        self.initPage(ChangeOrderPage(self.driver))
+        self.initPage(OrderPage(self.driver))
         self.auth_client()
 
         self.page.open()
@@ -76,7 +76,7 @@ class ChangeOrderTest(DefaultTest):
         self.assertEqual(is_err, True, f"Ошибка инпута не появилась")
 
     def test_budget_empty_input(self):
-        self.initPage(ChangeOrderPage(self.driver))
+        self.initPage(OrderPage(self.driver))
 
         self.auth_client()
         self.page.open()
@@ -90,7 +90,7 @@ class ChangeOrderTest(DefaultTest):
         self.assertEqual(is_err, True, f"Ошибка инпута не появилась")
 
     def test_budget_long_input(self):
-        self.initPage(ChangeOrderPage(self.driver))
+        self.initPage(OrderPage(self.driver))
 
         self.auth_client()
         self.page.open()
@@ -104,7 +104,7 @@ class ChangeOrderTest(DefaultTest):
         self.assertEqual(is_err, True, f"Ошибка инпута не появилась")
 
     def test_deadline_empty_input(self):
-        self.initPage(ChangeOrderPage(self.driver))
+        self.initPage(OrderPage(self.driver))
 
         self.auth_client()
         self.page.open()
@@ -119,7 +119,7 @@ class ChangeOrderTest(DefaultTest):
         self.assertEqual(is_err, True, f"Ошибка инпута не появилась")
 
     def test_deadline_past_input(self):
-        self.initPage(ChangeOrderPage(self.driver))
+        self.initPage(OrderPage(self.driver))
 
         self.auth_client()
         self.page.open()
@@ -134,7 +134,7 @@ class ChangeOrderTest(DefaultTest):
         self.assertEqual(is_err, True, f"Ошибка инпута не появилась")
 
     def test_deadline_future_input(self):
-        self.initPage(ChangeOrderPage(self.driver))
+        self.initPage(OrderPage(self.driver))
         self.auth_client()
 
         self.page.open()
@@ -149,7 +149,7 @@ class ChangeOrderTest(DefaultTest):
         self.assertEqual(is_err, True, f"Ошибка инпута не появилась")
 
     def test_descritiopn_empty_input(self):
-        self.initPage(ChangeOrderPage(self.driver))
+        self.initPage(OrderPage(self.driver))
         self.auth_client()
 
         self.page.open()
@@ -163,7 +163,7 @@ class ChangeOrderTest(DefaultTest):
         self.assertEqual(is_err, True, f"Ошибка инпута не появилась")
 
     def test_descritiopn_long_input(self):
-        self.initPage(ChangeOrderPage(self.driver))
+        self.initPage(OrderPage(self.driver))
         self.auth_client()
 
         self.page.open()
@@ -179,7 +179,7 @@ class ChangeOrderTest(DefaultTest):
         self.assertEqual(is_err, True, f"Ошибка инпута не появилась")
 
     def test_cancel_button(self):
-        self.initPage(ChangeOrderPage(self.driver))
+        self.initPage(OrderPage(self.driver))
         self.auth_client()
 
         self.page.open()

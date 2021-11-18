@@ -20,21 +20,21 @@ from tests.SettingsTests import SettingsTests
 if __name__ == "__main__":
     suite = unittest.TestSuite(
         (
-            unittest.makeSuite(NavbarsTest),
-            unittest.makeSuite(AuthTest),
-            unittest.makeSuite(SearchTest),
-            unittest.makeSuite(AllOrdersTest),
-            unittest.makeSuite(CreateOrderTest),
+            # unittest.makeSuite(NavbarsTest),
+            # unittest.makeSuite(AuthTest),
+            # unittest.makeSuite(SearchTest),
+            # unittest.makeSuite(AllOrdersTest),
+            # unittest.makeSuite(CreateOrderTest),
             unittest.makeSuite(OrderTest),
             unittest.makeSuite(ChangeOrderTest),
-            unittest.makeSuite(CreateVacancyTest),
+            # unittest.makeSuite(CreateVacancyTest),
             unittest.makeSuite(VacancyTest),
             unittest.makeSuite(ChangeVacancyrTest),
-            unittest.makeSuite(ExecutorRegTest),
-            unittest.makeSuite(ClientRegTest),
-            unittest.makeSuite(ProfileTest),
-            unittest.makeSuite(MainPageTest),
-            unittest.makeSuite(SettingsTests),
+            # unittest.makeSuite(ExecutorRegTest),
+            # unittest.makeSuite(ClientRegTest),
+            # unittest.makeSuite(ProfileTest),
+            # unittest.makeSuite(MainPageTest),
+            # unittest.makeSuite(SettingsTests),
         )
     )
 
